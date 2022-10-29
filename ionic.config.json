@@ -1,0 +1,7 @@
+{
+  "name": "u3_ej1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
