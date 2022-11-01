@@ -1,7 +1,6 @@
 import { StudentService } from './../services/student.service';
 import { Component } from '@angular/core';
 import { Student } from '../models/student';
-import { StudentService } from '../services/student.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
