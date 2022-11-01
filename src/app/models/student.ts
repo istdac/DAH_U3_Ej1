@@ -5,4 +5,5 @@ export class Student {
     age: number;
     nip: number;
     email: string;
+    career: string;
 }
