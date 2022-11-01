@@ -40,4 +40,8 @@ export class StudentService {
       }
     ];
    }
+   //Método consulta general
+  public getStudents(): Student[]{
+    return this.students;
+  }
 }
