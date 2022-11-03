@@ -27,9 +27,10 @@ export class ViewStudentPage implements OnInit {
     this.aroute.queryParams.subscribe(
       (params)=>{
         console.log(params);
+        this.student = this.studentService.getStudentByControlNumber(params.controlnumber);
+
       }
     );
-    this.student = this.studentService.getStudentByControlNumber('32405891');
 
   }
 
