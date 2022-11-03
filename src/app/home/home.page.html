@@ -8,11 +8,12 @@
   <ion-row>
     <ion-col>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of students; let i= index">
+        <ion-item-sliding *ngFor="let item of students; let i= index" (click)="getStudentByControlNumber(item.controlNumber)">
           <ion-item>
             <ion-label> {{item.name}} </ion-label>
-            <ion-thumbnail><ion-img src={{item.photo}}></ion-img></ion-thumbnail>
-            
+            <ion-thumbnail>
+              <ion-img src="{{item.photo}}"></ion-img>
+            </ion-thumbnail>
           </ion-item>
           <ion-item-options side="end" (ionSwipe)="deleteStudent(i)">
             <ion-item-option expandable color="danger">

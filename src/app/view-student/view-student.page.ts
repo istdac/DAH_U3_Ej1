@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
-
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-view-student',
   templateUrl: './view-student.page.html',
@@ -11,7 +12,7 @@ export class ViewStudentPage implements OnInit {
 
   public student: Student;
   //Preparar servicio para obtener datos
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private aroute: ActivatedRoute) { }
 
   //Qué hacer cuando se abra la ventana
   /*
@@ -21,8 +22,16 @@ export class ViewStudentPage implements OnInit {
   */
   ngOnInit() {
     /*Hacer las consultas aqui para ver cómo se va cargando*/
+      //Recibir parámetros con activated route (servicio)
+      /*Subscribe se usa en promesas de js  */
+    this.aroute.queryParams.subscribe(
+      (params)=>{
+        console.log(params);
+      }
+    );
     this.student = this.studentService.getStudentByControlNumber('32405891');
-    
+
   }
+
 
 }
