@@ -26,13 +26,13 @@ export class ViewStudentPage implements OnInit {
       /*Subscribe se usa en promesas de js  */
     this.aroute.queryParams.subscribe(
       (params)=>{
-        console.log(params);
+        //console.log(params);
         this.student = this.studentService.getStudentByControlNumber(params.controlnumber);
 
       }
-    );
+    );//subscribe
 
-  }
+  }//onInit
 
 
 }
