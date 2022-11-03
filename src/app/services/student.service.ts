@@ -54,4 +54,12 @@ export class StudentService {
     this.students.splice(pos,1);
     return this.students;
   }
+  //Obtener alumno por NC
+  public getStudentByControlNumber(cn: string): Student{
+    let item: Student;
+    item = this.students.find(
+      (student)=> student.controlNumber === cn//funAnonima
+    );
+    return item;
+  }//getStudentByControlNumber
 }
