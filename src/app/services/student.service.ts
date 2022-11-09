@@ -8,7 +8,7 @@ import { Student } from '../models/student';
 export class StudentService {
   //Construir lo de la consulta general
   /*Hacer import de student */
-  private students: Student[];
+  private students: Student[]=[];
 
   constructor() {
     //Llenar algunos datos por defecto
@@ -62,4 +62,8 @@ export class StudentService {
     );
     return item;
   }//getStudentByControlNumber
+
+  public newStudent(student: Student): void{
+    this.students.push(student); //Solamente usar cuando arreglo ya inicializado (en constructor)
+  }
 }
