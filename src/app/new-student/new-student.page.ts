@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from '../models/student';
+import { StudentService } from '../services/student.service';
 
 @Component({
   selector: 'app-new-student',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewStudentPage implements OnInit {
 
-  constructor() { }
+  //Objeto estudiante para mandar datos
+  public stu: Student;
+
+  constructor(private stuServ: StudentService) {
+
+  }//constructor
 
   ngOnInit() {
+  }//ngoninit
+
+  public newStudent(): void{
+    //TODO: Construir el objeto
+    
+    //--
+    this.stuServ.newStudent(this.stu);
   }
 
-}
+
+}//class
