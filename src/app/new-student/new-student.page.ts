@@ -18,6 +18,14 @@ export class NewStudentPage implements OnInit {
   }//constructor
 
   ngOnInit() {
+    //Arreglo contiene primero el valor por defecto y segundo las validaciones
+    this.myForm = this.fb.group(
+      {
+        controlnumber:['',Validators.required],
+
+      }
+    ); //Group recibe un objeto
+
   }//ngoninit
 
   public newStudent(): void{
