@@ -33,6 +33,15 @@ export class NewStudentPage implements OnInit {
       }
     ); //Group recibe un objeto
 
+    //Create validation messages, property name with ''
+    this.validationMessage={
+      controlnumber:[
+        {type:'required',message:'Número de control obligatorio'},
+        {type:'minlength',message:'El número de control debe ser de 8 dígitos'},
+        {type:'maxlength',message:'El número de control debe ser de 8 dígitos'},
+        {type:'pattern',message:'El número de control está mal formado'},
+      ]
+    };
   }//ngoninit
 
   public newStudent(): void{
