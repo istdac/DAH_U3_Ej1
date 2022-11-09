@@ -12,6 +12,7 @@ export class NewStudentPage implements OnInit {
   //Objeto estudiante para mandar datos
   public stu: Student;
   public myForm: FormGroup;
+  public validationMessage: Object;
   /*Form builder es un servicio */
   constructor(private stuServ: StudentService, private fb: FormBuilder) {
 
@@ -19,9 +20,15 @@ export class NewStudentPage implements OnInit {
 
   ngOnInit() {
     //Arreglo contiene primero el valor por defecto y segundo las validaciones
+    //Validators compose se hace para varias validaciones
     this.myForm = this.fb.group(
       {
-        controlnumber:['',Validators.required],
+        controlnumber:['',Validators.compose([
+          Validators.required,
+          Validators.minLength(7),
+          Validators.maxLength(8),
+          Validators.pattern('^[0-9]+$')
+        ])]
 
       }
     ); //Group recibe un objeto
