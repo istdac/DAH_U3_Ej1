@@ -15,13 +15,15 @@
   -->
 
   <ion-grid>
-    <form>
+    <!--Crear enlace html con formulario, como myform es variable, poner atributo en corchetes-->
+    <form [formGroup]="myForm">
       <!--Un row para cada input-->
       <ion-row>
         <ion-col>
           <ion-item>
             <ion-label position="floating">Número de Control</ion-label>
-            <ion-input></ion-input>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="controlnumber"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
