@@ -27,8 +27,10 @@
             <!--Mensaje de validacion-->
             <div><!--Recorrer mensajes de error-->
               <ng-container *ngFor="let item of validationMessage['controlnumber']">
-                <div class="errorMessage">
-                  {{}}
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('controlnumber').dirty || myForm.get('controlnumber').touched) && myForm.get('controlnumber').hasError(item.type)">
+                  {{item.message}}
                 </div>
               </ng-container>
             </div>
