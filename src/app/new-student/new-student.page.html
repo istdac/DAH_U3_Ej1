@@ -24,6 +24,14 @@
             <ion-label position="floating">Número de Control</ion-label>
             <!--Ligar input con valor de entrada, debe tener mismo nombre-->
             <ion-input formControlName="controlnumber"></ion-input>
+            <!--Mensaje de validacion-->
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['controlnumber']">
+                <div class="errorMessage">
+                  {{}}
+                </div>
+              </ng-container>
+            </div>
           </ion-item>
         </ion-col>
       </ion-row>
