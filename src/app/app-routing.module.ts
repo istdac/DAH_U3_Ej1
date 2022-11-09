@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'new-student',
     pathMatch: 'full'
   },
   //Usar navigation o router para navegacion entre paginas ya que set root quita pila de navegacion
