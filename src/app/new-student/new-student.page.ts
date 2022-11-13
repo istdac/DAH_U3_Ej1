@@ -21,7 +21,7 @@ export class NewStudentPage implements OnInit {
   ngOnInit() {
     //Arreglo contiene primero el valor por defecto y segundo las validaciones
     //Validators compose se hace para varias validaciones
-    this.myForm = this.fb.group(
+      this.myForm = this.fb.group(
       {
         controlnumber:['',Validators.compose([
           Validators.required,
@@ -30,19 +30,16 @@ export class NewStudentPage implements OnInit {
           Validators.pattern('^[0-9]+$')
         ])],
         name:['',Validators.compose([
-          Validators.required,
-          Validators.minLength(1)
+          Validators.required
         ])],
         curp:['',Validators.compose([
           Validators.pattern('/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$'),
           Validators.required,
           Validators.minLength(2)
-        ])],
-        age:[17,Validators.compose([
+        ])],age:[17,Validators.compose([
           Validators.min(17),
           Validators.required
-        ])],
-        nip:['',Validators.compose([
+        ])],nip:['',Validators.compose([
           Validators.required,
           Validators.min(9),
           Validators.max(9999),
@@ -54,10 +51,11 @@ export class NewStudentPage implements OnInit {
         career:['ISC',Validators.compose([
           Validators.required,
         ])],
-        photo:['',Validators.compose([
+        photo:['https://picsum.photos/600',Validators.compose([
           Validators.required,
-          Validators.pattern('/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/')
+          Validators.pattern('https://picsum.photos/600')
         ])]
+
       }
     ); //Group recibe un objeto
 
@@ -67,7 +65,7 @@ export class NewStudentPage implements OnInit {
         {type:'required',message:'Número de control obligatorio'},
         {type:'minlength',message:'El número de control debe ser de 8 dígitos'},
         {type:'maxlength',message:'El número de control debe ser de 8 dígitos'},
-        {type:'pattern',message:'El número de control está mal formado'}
+        {type:'pattern',message:'El número de control está mal formado'},
       ],
       name:[
         {type:'required',message:'Nombre obligatorio'},

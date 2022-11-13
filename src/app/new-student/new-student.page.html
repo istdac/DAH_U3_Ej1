@@ -32,9 +32,137 @@
                 </div>
               </ng-container>
             </div>
-          
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="name"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['nombre']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('nombre').dirty || myForm.get('nombre').touched) && myForm.get('nombre').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">CURP</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="curp"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['curp']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('curp').dirty || myForm.get('curp').touched) && myForm.get('curp').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Edad</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="age"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['age']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('age').dirty || myForm.get('age').touched) && myForm.get('age').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">NIP</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input type="numeric" formControlName="nip"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['nip']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('nip').dirty || myForm.get('nip').touched) && myForm.get('nip').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="email"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['email']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('email').dirty || myForm.get('email').touched) && myForm.get('email').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Career</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="career"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['career']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('career').dirty || myForm.get('career').touched) && myForm.get('career').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Foto</ion-label>
+            <!--Ligar input con valor de entrada, debe tener mismo nombre-->
+            <ion-input formControlName="photo"></ion-input>
+            <!--Mensaje de validacion--></ion-item>
+            <div><!--Recorrer mensajes de error-->
+              <ng-container *ngFor="let item of validationMessage['photo']">
+                <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
+                <div class="errorMessage" 
+                *ngIf="(myForm.get('photo').dirty || myForm.get('photo').touched) && myForm.get('photo').hasError(item.type)">
+                  {{item.message}}
+                </div>
+              </ng-container>
+            </div>
+        </ion-col>
+      </ion-row>
+      
+
+      
     </form>
   </ion-grid>
 </ion-content>
