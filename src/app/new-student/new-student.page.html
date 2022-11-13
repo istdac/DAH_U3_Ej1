@@ -6,14 +6,12 @@
     <ion-title>Create a new Student</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <!--Comunmente usar grid para el formulario
     Cada componente tiene un archivo de module, para importar los module que se usan
     Si quiere añadir uno, hacer dentro del archivo module.ts del componente
     Poner modules en root puede ser pesado para rendimiento
   -->
-
   <ion-grid>
     <!--Crear enlace html con formulario, como myform es variable, poner atributo en corchetes-->
     <form [formGroup]="myForm">
@@ -24,7 +22,7 @@
             <ion-label position="floating">Número de Control</ion-label>
             <!--Ligar input con valor de entrada, debe tener mismo nombre-->
             <ion-input formControlName="controlnumber"></ion-input>
-            <!--Mensaje de validacion-->
+            <!--Mensaje de validacion--></ion-item>
             <div><!--Recorrer mensajes de error-->
               <ng-container *ngFor="let item of validationMessage['controlnumber']">
                 <!--Dirty significa tocado; Hacer if con tipos para obtener mensaje apropiado-->
@@ -34,7 +32,7 @@
                 </div>
               </ng-container>
             </div>
-          </ion-item>
+          
         </ion-col>
       </ion-row>
     </form>
