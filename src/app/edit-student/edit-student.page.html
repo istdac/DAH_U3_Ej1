@@ -21,7 +21,7 @@
           <ion-item>
             <ion-label position="floating">Número de Control</ion-label>
             <!--Ligar input con valor de entrada, debe tener mismo nombre-->
-            <ion-input formControlName="controlnumber"></ion-input>
+            <ion-input [disabled]="true" formControlName="controlnumber" ></ion-input>
             <!--Mensaje de validacion--></ion-item
           >
           <div>
@@ -205,7 +205,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button (click)="newStudent()">Crear nuevo alumno</ion-button>
+          <ion-button (click)="editStudent()">Actualizar Alumno</ion-button>
         </ion-col>
       </ion-row>
     </form>

@@ -12,7 +12,7 @@ export class ViewStudentPage implements OnInit {
 
   public student: Student;
   //Preparar servicio para obtener datos
-  constructor(private studentService: StudentService, private aroute: ActivatedRoute) { }
+  constructor(private studentService: StudentService, private router: Router, private aroute: ActivatedRoute) { }
 
   //Qué hacer cuando se abra la ventana
   /*
@@ -33,6 +33,10 @@ export class ViewStudentPage implements OnInit {
     );//subscribe
 
   }//onInit
-
+  public editStudent(){
+    this.router.navigate(['/edit-student'],{
+      queryParams: {cn: this.student.controlNumber}
+    });
+  }
 
 }

@@ -8,7 +8,10 @@
   <ion-row>
     <ion-col>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of students; let i= index" (click)="getStudentByControlNumber(item.controlNumber)">
+        <ion-item-sliding
+          *ngFor="let item of students; let i= index"
+          (click)="getStudentByControlNumber(item.controlNumber)"
+        >
           <ion-item>
             <ion-label> {{item.name}} </ion-label>
             <ion-thumbnail>
@@ -22,6 +25,14 @@
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
-    </ion-col>
-  </ion-row><!---->
+    </ion-col> </ion-row
+  ><!---->
+  <ion-fab horizontal="end" >
+    <ion-fab-button (click)="addStudent()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="studentLogin()">
+      <ion-icon name="log-in-outline" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

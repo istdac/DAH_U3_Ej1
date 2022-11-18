@@ -1,0 +1,18 @@
+<ion-header>
+  
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>loginStudent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item color="primary">
+    <ion-label position="floating">Numero de Control</ion-label>
+    <ion-input #cn id="cn" type="text" required></ion-input>
+  </ion-item>
+  <ion-button  (click)="login(cn.value.toString())" color="dark" expand="block" fill="outline">Login</ion-button>
+</ion-content>

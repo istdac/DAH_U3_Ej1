@@ -2,56 +2,60 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
-@Component({
-  selector: 'app-new-student',
-  templateUrl: './new-student.page.html',
-  styleUrls: ['./new-student.page.scss'],
-})
-export class NewStudentPage implements OnInit {
+import { ActivatedRoute } from '@angular/router';
 
-  //Objeto estudiante para mandar datos
+@Component({
+  selector: 'app-edit-student',
+  templateUrl: './edit-student.page.html',
+  styleUrls: ['./edit-student.page.scss'],
+})
+export class EditStudentPage implements OnInit {
   public stu: Student;
+  public cn: string;
   public myForm: FormGroup;
   public validationMessage: Object;
-  /*Form builder es un servicio */
-  constructor(private stuServ: StudentService, private fb: FormBuilder) {
 
-  }//constructor
+  constructor(private stuServ: StudentService, private fb: FormBuilder, private aroute: ActivatedRoute) { }
 
   ngOnInit() {
-    //Arreglo contiene primero el valor por defecto y segundo las validaciones
-    //Validators compose se hace para varias validaciones
-      this.myForm = this.fb.group(
+
+    this.aroute.queryParams.subscribe(
+      (params)=>{
+        this.cn=params.cn;
+      }
+    );
+      this.stu=this.stuServ.getStudentByControlNumber(this.cn);
+    this.myForm = this.fb.group(
       {
-        controlnumber:['',Validators.compose([
+        controlnumber:[this.cn,Validators.compose([
           Validators.required,
           Validators.minLength(7),
           Validators.maxLength(8),
           Validators.pattern('^[0-9]+$')
         ])],
-        name:['',Validators.compose([
+        name:[this.stu.name,Validators.compose([
           Validators.required
         ])],
-        curp:['',Validators.compose([
+        curp:[this.stu.curp,Validators.compose([
           Validators.pattern('/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$'),
           Validators.required,
           Validators.minLength(2)
-        ])],age:[17,Validators.compose([
+        ])],age:[this.stu.age,Validators.compose([
           Validators.min(17),
           Validators.required
-        ])],nip:['',Validators.compose([
+        ])],nip:[this.stu.nip,Validators.compose([
           Validators.required,
           Validators.min(9),
           Validators.max(9999),
         ])],
-        email:['',Validators.compose([
+        email:[this.stu.email,Validators.compose([
           Validators.required,
           Validators.pattern('[a-zA-Z]+@ittepic.edu.mx'),
         ])],
-        career:['ISC',Validators.compose([
+        career:[this.stu.career,Validators.compose([
           Validators.required,
         ])],
-        photo:['https://picsum.photos/600',Validators.compose([
+        photo:[this.stu.photo,Validators.compose([
           Validators.required,
           Validators.pattern('https://picsum.photos/600')
         ])]
@@ -98,11 +102,9 @@ export class NewStudentPage implements OnInit {
       ],
 
     };
-  }//ngoninit
+  }
 
-  public newStudent(): void{
-    //TODO: Construir el objeto
-    //--
+  public editStudent(){
     if(this.myForm.get('controlnumber').value &&
        this.myForm.get('name').value &&
        this.myForm.get('curp').value &&
@@ -111,19 +113,17 @@ export class NewStudentPage implements OnInit {
        this.myForm.get('email').value &&
        this.myForm.get('career').value &&
        this.myForm.get('photo').value){
-       this.stu={
-          controlNumber: this.myForm.get('controlnumber').value,
-          age:this.myForm.get('name').value,
-          career: this.myForm.get('career').value,
-          curp: this.myForm.get('curp').value,
-          email: this.myForm.get('email').value,
-          name: this.myForm.get('name').value,
-          nip: this.myForm.get('nip').value,
-          photo : this.myForm.get('photo').value
-          };
+       this.stuServ.updateStudent(
+        this.myForm.get('controlnumber').value,
+        this.myForm.get('age').value ,
+        this.myForm.get('career').value ,
+        this.myForm.get('curp').value ,
+        this.myForm.get('email').value ,
+        this.myForm.get('name').value,
+        this.myForm.get('nip').value ,
+        this.myForm.get('photo').value
+       );
        }
     this.stuServ.newStudent(this.stu);
   }
-
-
-}//class
+}

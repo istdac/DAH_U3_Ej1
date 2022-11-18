@@ -66,4 +66,17 @@ export class StudentService {
   public newStudent(student: Student): void{
     this.students.push(student); //Solamente usar cuando arreglo ya inicializado (en constructor)
   }
+  public updateStudent(cn: string,ag: number,ca: string,cu: string,em: string,na: string,ni: number,ph: string){
+    let update =  this.students.findIndex(
+      (student)=> student.controlNumber === cn//funAnonima
+    );
+
+    this.students[update].age=ag;
+    this.students[update].career=ca;
+    this.students[update].curp=cu;
+    this.students[update].email=em;
+    this.students[update].name=na;
+    this.students[update].photo=ph;
+    this.students[update].nip=ni;
+  }
 }

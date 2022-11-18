@@ -28,7 +28,7 @@ export class HomePage {
       header: 'Confirmación',
       subHeader: '¿Está seguro que desea eliminar?',
       message: 'Esto es una confirmación',
-      buttons: [ 
+      buttons: [
         {
           text: 'Cancelar',
           role: 'cancel',
@@ -57,4 +57,10 @@ export class HomePage {
     );
   }//getStudentByControlNumber
 
+  public addStudent(): void{
+    this.router.navigate(['/new-student'],{});
+  }
+  public studentLogin(): void{
+    this.router.navigate(['/login-student'],{});
+  }
 }//homepage

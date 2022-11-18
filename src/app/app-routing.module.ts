@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'new-student',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   //Usar navigation o router para navegacion entre paginas ya que set root quita pila de navegacion
@@ -19,6 +19,14 @@ const routes: Routes = [
   {
     path: 'new-student',
     loadChildren: () => import('./new-student/new-student.module').then( m => m.NewStudentPageModule)
+  },
+  {
+    path: 'login-student',
+    loadChildren: () => import('./login-student/login-student.module').then( m => m.LoginStudentPageModule)
+  },
+  {
+    path: 'edit-student',
+    loadChildren: () => import('./edit-student/edit-student.module').then( m => m.EditStudentPageModule)
   },
 ];
 
