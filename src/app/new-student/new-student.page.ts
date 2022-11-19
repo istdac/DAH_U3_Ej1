@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-new-student',
   templateUrl: './new-student.page.html',
@@ -14,7 +17,8 @@ export class NewStudentPage implements OnInit {
   public myForm: FormGroup;
   public validationMessage: Object;
   /*Form builder es un servicio */
-  constructor(private stuServ: StudentService, private fb: FormBuilder) {
+  constructor(private stuServ: StudentService, private fb: FormBuilder,
+    private alertController: AlertController, private toastController: ToastController) {
 
   }//constructor
 
@@ -38,7 +42,8 @@ export class NewStudentPage implements OnInit {
           Validators.minLength(2)
         ])],age:[17,Validators.compose([
           Validators.min(17),
-          Validators.required
+          Validators.required,
+          Validators.pattern(new RegExp(/^[0-9]+$/))
         ])],nip:['',Validators.compose([
           Validators.required,
           Validators.min(9),
@@ -53,7 +58,7 @@ export class NewStudentPage implements OnInit {
         ])],
         photo:['https://picsum.photos/600',Validators.compose([
           Validators.required,
-          Validators.pattern('https://picsum.photos/600')
+          Validators.pattern(new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/))
         ])]
 
       }
@@ -74,11 +79,12 @@ export class NewStudentPage implements OnInit {
       curp:[
         {type:'required',message:'CURP obligatorio'},
         {type:'minlength',message:'El número de control debe ser de al menos 2 dígitos'},
-        {type:'pattern',message:'El CURP está mal formado'},
+        {type:'pattern',message:'El CURP está mal formado (AAAAA000000AAAAAA00) o (AAAA000000AAAAAA00)'},
       ],
       age:[
         {type:'required',message:'Edad obligatoria'},
         {type:'min',message:'La edad debe ser de al menos 17 años'},
+        {type:'pattern',message:'La edad está mal formada'},
       ],
       nip:[
         {type:'required',message:'NIP obligatorio'},
@@ -100,17 +106,31 @@ export class NewStudentPage implements OnInit {
     };
   }//ngoninit
 
+  async presentToast(position: 'top' | 'middle' | 'bottom'){
+    const toast = await this.toastController.create({
+      message:'Editado exitosamente',
+      duration:1500,
+      position,
+      color:'success'
+    });
+    await toast.present();
+  }
+
+  async presentAlertError(){
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      subHeader: 'Aviso: ',
+      message: 'NO se guardo, ¡ingrese todos los campos correctamente!',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+
   public newStudent(): void{
     //TODO: Construir el objeto
     //--
-    if(this.myForm.get('controlnumber').value &&
-       this.myForm.get('name').value &&
-       this.myForm.get('curp').value &&
-       this.myForm.get('age').value &&
-       this.myForm.get('nip').value &&
-       this.myForm.get('email').value &&
-       this.myForm.get('career').value &&
-       this.myForm.get('photo').value){
+    if(this.myForm.valid){
        this.stu={
           controlNumber: this.myForm.get('controlnumber').value,
           age:this.myForm.get('name').value,
@@ -121,8 +141,12 @@ export class NewStudentPage implements OnInit {
           nip: this.myForm.get('nip').value,
           photo : this.myForm.get('photo').value
           };
+          this.stuServ.newStudent(this.stu);
+          this.presentToast('top');
+
+       }else{
+        this.presentAlertError();
        }
-    this.stuServ.newStudent(this.stu);
   }
 
 

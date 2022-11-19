@@ -45,7 +45,8 @@ export class EditStudentPage implements OnInit {
           Validators.minLength(2)
         ])],age:[this.stu.age,Validators.compose([
           Validators.min(17),
-          Validators.required
+          Validators.required,
+          Validators.pattern(new RegExp(/^[0-9]+$/))
         ])],nip:[this.stu.nip,Validators.compose([
           Validators.required,
           Validators.min(9),
@@ -60,7 +61,7 @@ export class EditStudentPage implements OnInit {
         ])],
         photo:[this.stu.photo,Validators.compose([
           Validators.required,
-          Validators.pattern('https://picsum.photos/600')
+          Validators.pattern(new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/))
         ])]
 
       }
@@ -81,11 +82,13 @@ export class EditStudentPage implements OnInit {
       curp:[
         {type:'required',message:'CURP obligatorio'},
         {type:'minlength',message:'El número de control debe ser de al menos 2 dígitos'},
-        {type:'pattern',message:'El CURP está mal formado (AAAAA000000AAAAAA00) o (AAAA000000AAAAAA00'},
+        {type:'pattern',message:'El CURP está mal formado (AAAAA000000AAAAAA00) o (AAAA000000AAAAAA00)'},
       ],
       age:[
         {type:'required',message:'Edad obligatoria'},
         {type:'min',message:'La edad debe ser de al menos 17 años'},
+        {type:'pattern',message:'La edad está mal formada'},
+
       ],
       nip:[
         {type:'required',message:'NIP obligatorio'},
@@ -121,21 +124,14 @@ export class EditStudentPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Alerta',
       subHeader: 'Aviso: ',
-      message: 'NO se guardo, ingrese todos los campos!',
+      message: 'NO se guardo, ¡ingrese todos los campos correctamente!',
       buttons: ['OK'],
     });
     await alert.present();
   }
 
   public editStudent(){
-    if(this.myForm.get('controlnumber').value &&
-       this.myForm.get('name').value &&
-       this.myForm.get('curp').value &&
-       this.myForm.get('age').value &&
-       this.myForm.get('nip').value &&
-       this.myForm.get('email').value &&
-       this.myForm.get('career').value &&
-       this.myForm.get('photo').value){
+    if(this.myForm.valid){
         this.stuServ.updateStudent(
           this.myForm.get('controlnumber').value,
           this.myForm.get('age').value ,
