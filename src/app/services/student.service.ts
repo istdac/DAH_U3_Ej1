@@ -21,7 +21,7 @@ export class StudentService {
         email: 'iarjona@ittepic.edu.mx',
         name: 'Israel Arjona Vizcaíno',
         nip: 717,
-        photo : '../../assets/img/cat.jpg'
+        photo : 'https://picsum.photos/600'
       },
       {
         controlNumber: '12404391',
@@ -31,7 +31,7 @@ export class StudentService {
         email: 'iarjona2@ittepic.edu.mx',
         name: 'Israel Arjona Vizcaídos',
         nip: 616,
-        photo : '../../assets/img/yankee.png'
+        photo :'https://picsum.photos/600'
 
       },
       {
@@ -42,7 +42,7 @@ export class StudentService {
         email: 'iarjona3@ittepic.edu.mx',
         name: 'Israel Arjona Vizcaítres',
         nip: 327,
-        photo : '../../assets/img/face.png'
+        photo : 'https://picsum.photos/600'
       }
     ];
    }
