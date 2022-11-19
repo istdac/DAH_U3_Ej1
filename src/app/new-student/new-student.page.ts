@@ -108,7 +108,7 @@ export class NewStudentPage implements OnInit {
 
   async presentToast(position: 'top' | 'middle' | 'bottom'){
     const toast = await this.toastController.create({
-      message:'Editado exitosamente',
+      message:'Guardado exitosamente',
       duration:1500,
       position,
       color:'success'
@@ -133,7 +133,7 @@ export class NewStudentPage implements OnInit {
     if(this.myForm.valid){
        this.stu={
           controlNumber: this.myForm.get('controlnumber').value,
-          age:this.myForm.get('name').value,
+          age:this.myForm.get('age').value,
           career: this.myForm.get('career').value,
           curp: this.myForm.get('curp').value,
           email: this.myForm.get('email').value,
